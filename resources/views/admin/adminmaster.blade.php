@@ -65,7 +65,7 @@
           <img src="{{ asset('asset/admin/default/profile.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          <router-link to="/home" class="d-block">{{ Auth::user()->name }}</router-link>
         </div>
       </div>
 
@@ -112,12 +112,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
+            <router-link to="/post" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
                 Post
               </p>
-            </a>
+            </router-link>
           </li>
         </ul>
       </nav>
@@ -128,11 +128,9 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
-    <!-- Main content -->
-    
-    <admin-main></admin-main>
-    <!-- /.content -->
+    <div class="container">
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex, quasi itaque natus blanditiis dignissimos in quidem cum earum, illum esse eligendi a officia! Accusantium illum expedita, quia nulla in dolore?</p>
+    </div>
   </div>
   <!-- /.content-wrapper -->
 
