@@ -2011,6 +2011,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -37794,10 +37822,67 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("p", [
-        _vm._v(
-          "\n    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique quis\n    impedit, fugiat esse dolorem ut fugit corrupti illo accusamus aspernatur\n    qui nulla in labore voluptas? Magni fugiat sed dicta illo?\n  "
-        )
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "card mt-4" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("Category List")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c("button", { staticClass: "btn btn-success btn-sm" }, [
+                _vm._v("add category")
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "table",
+              {
+                staticClass: "table table-bordered table-striped",
+                attrs: { id: "example1" }
+              },
+              [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", [_vm._v("Sl")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Category Name")]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v("Action")])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("Trident")]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("InternetExplorer")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-success btn-sm",
+                          attrs: { href: "" }
+                        },
+                        [_vm._v("edit")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          attrs: { href: "" }
+                        },
+                        [_vm._v("delete")]
+                      )
+                    ])
+                  ])
+                ])
+              ]
+            )
+          ])
+        ])
       ])
     ])
   }
