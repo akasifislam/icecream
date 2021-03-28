@@ -11,12 +11,12 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+import { routes } from './routes';
+
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 
-const routes = [
-  
-]
+
 
 const router = new VueRouter({
     routes,

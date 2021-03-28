@@ -130,6 +130,7 @@
   <div class="content-wrapper">
     <div class="container">
       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex, quasi itaque natus blanditiis dignissimos in quidem cum earum, illum esse eligendi a officia! Accusantium illum expedita, quia nulla in dolore?</p>
+      {{-- <example-component></example-component> --}}
     </div>
   </div>
   <!-- /.content-wrapper -->
