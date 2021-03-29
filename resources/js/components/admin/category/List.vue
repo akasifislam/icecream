@@ -5,7 +5,9 @@
         <div class="card-header">
           <h3 class="card-title">Category List</h3>
           <div class="card-tools">
-              <button class="btn btn-success btn-sm">add category</button>
+            <button class="btn btn-success btn-sm">
+              <router-link class="text-white text-decoration-none" to="/category-add">Category</router-link>
+            </button>
           </div>
         </div>
         <!-- /.card-header -->
@@ -23,8 +25,8 @@
                 <td>Trident</td>
                 <td>InternetExplorer</td>
                 <td>
-                    <a href="" class="btn btn-success btn-sm">edit</a>
-                    <a href="" class="btn btn-primary btn-sm">delete</a>
+                  <a href="" class="btn btn-success btn-sm">edit</a>
+                  <a href="" class="btn btn-primary btn-sm">delete</a>
                 </td>
               </tr>
             </tbody>
