@@ -2088,7 +2088,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "New",
+  data: function data() {
+    return {
+      form: new Form({
+        cat_name: ""
+      })
+    };
+  },
+  methods: {
+    addCategory: function addCategory() {
+      this.form.post("/add-category").then(function (response) {
+        console.log(response.data);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -38991,25 +39009,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "container" }, [
-        _c("div", { staticClass: "row justify-content-around mt-2" }, [
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("div", { staticClass: "card card-primary" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _c("h3", { staticClass: "card-title" }, [
-                  _vm._v("Quick Example")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("form", { attrs: { role: "form" } }, [
+  return _c("div", [
+    _c("section", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-around mt-2" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card card-primary" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                attrs: { role: "form" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.addCategory()
+                  }
+                }
+              },
+              [
                 _c("div", { staticClass: "card-body" }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "categoryId" } }, [
@@ -39017,31 +39035,62 @@ var staticRenderFns = [
                     ]),
                     _vm._v(" "),
                     _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.cat_name,
+                          expression: "form.cat_name"
+                        }
+                      ],
                       staticClass: "form-control",
                       attrs: {
                         type: "name",
+                        name: "cat_name",
                         id: "categoryId",
                         placeholder: "Enter Category Name"
+                      },
+                      domProps: { value: _vm.form.cat_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "cat_name", $event.target.value)
+                        }
                       }
                     })
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit" }
-                    },
-                    [_vm._v("save")]
-                  )
-                ])
-              ])
-            ])
+                _vm._m(1)
+              ]
+            )
           ])
         ])
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Quick Example")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("save")]
+      )
     ])
   }
 ]
@@ -54394,6 +54443,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webp
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('admin-main', __webpack_require__(/*! ./components/admin/AdminMaster.vue */ "./resources/js/components/admin/AdminMaster.vue")["default"]); // v form 
 
 
+window.Form = vform__WEBPACK_IMPORTED_MODULE_3__["Form"];
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_3__["HasError"].name, vform__WEBPACK_IMPORTED_MODULE_3__["HasError"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_3__["AlertError"].name, vform__WEBPACK_IMPORTED_MODULE_3__["AlertError"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

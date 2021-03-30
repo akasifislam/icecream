@@ -9,13 +9,15 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form">
+            <form role="form" @click.prevent="addCategory()">
               <div class="card-body">
                 <div class="form-group">
                   <label for="categoryId">Add New Category</label>
                   <input
                     type="name"
                     class="form-control"
+                    v-model="form.cat_name"
+                    name="cat_name"
                     id="categoryId"
                     placeholder="Enter Category Name"
                   />
@@ -33,7 +35,23 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "New",
+  data() {
+    return {
+      form: new Form({
+        cat_name: "",
+      }),
+    };
+  },
+  methods: {
+    addCategory() {
+      this.form.post("/add-category").then((response) => {
+        console.log(response.data);
+      });
+    },
+  },
+};
 </script>
 
 <style>

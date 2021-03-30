@@ -19,6 +19,8 @@ Vue.component('admin-main', require('./components/admin/AdminMaster.vue').defaul
 // v form 
 import { Form, HasError, AlertError } from 'vform'
 
+window.Form = Form;
+
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
 
