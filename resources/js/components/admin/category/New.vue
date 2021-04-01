@@ -52,7 +52,7 @@ export default {
         this.$router.push("/category-list");
         Toast.fire({
           icon: "success",
-          title: "Category added successfully",
+          title: "Category add successfully",
         });
       });
     },

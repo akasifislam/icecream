@@ -2110,7 +2110,7 @@ __webpack_require__.r(__webpack_exports__);
 
         Toast.fire({
           icon: "success",
-          title: "Category added successfully"
+          title: "Category add successfully"
         });
       });
     }
