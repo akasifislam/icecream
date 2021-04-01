@@ -16,11 +16,13 @@
                   <input
                     type="name"
                     class="form-control"
+                    :class="{ 'is-invalid': form.errors.has('cat_name') }"
                     v-model="form.cat_name"
                     name="cat_name"
                     id="categoryId"
                     placeholder="Enter Category Name"
                   />
+                  <has-error :form="form" field="cat_name"></has-error>
                 </div>
               </div>
               <div class="card-footer">
@@ -47,7 +49,7 @@ export default {
   methods: {
     addCategory() {
       this.form.post("/add-category").then((response) => {
-        console.log(response.data);
+        this.$router.push("/category-list");
       });
     },
   },
