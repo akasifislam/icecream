@@ -26,7 +26,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('/post', 'PostController@post_all');
 
-Route::get('/{anypayh}', 'HomeController@index')->where('path', '.*');
+// Route::get('/{anypayh}', 'HomeController@index')->where('path', '.*');
 
 
 Route::post('/add-category', 'CategoryController@addCategory');
+Route::get('/show-category', 'CategoryController@showCategory');

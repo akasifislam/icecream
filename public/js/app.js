@@ -2047,7 +2047,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
-  mounted: function mounted() {},
+  mounted: function mounted() {
+    this.$store.dispatch("getAllCategory");
+  },
   computed: {
     allCategory: function allCategory() {
       return this.$store.getters.getCategory;
@@ -42615,15 +42617,19 @@ var render = function() {
             [
               _vm._m(0),
               _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v("Trident")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.allCategory))]),
-                  _vm._v(" "),
-                  _vm._m(1)
-                ])
-              ])
+              _c(
+                "tbody",
+                _vm._l(_vm.allCategory, function(category, index) {
+                  return _c("tr", { key: index }, [
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(category.cat_name))]),
+                    _vm._v(" "),
+                    _vm._m(1, true)
+                  ])
+                }),
+                0
+              )
             ]
           )
         ])
@@ -59420,7 +59426,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MOD
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component(vform__WEBPACK_IMPORTED_MODULE_5__["AlertError"].name, vform__WEBPACK_IMPORTED_MODULE_5__["AlertError"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   routes: _routes__WEBPACK_IMPORTED_MODULE_4__["routes"],
-  mode: 'history'
+  mode: 'hash'
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
@@ -59860,17 +59866,28 @@ var routes = [{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+// import Axios from "axios"
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
-    category: "this is category"
+    category: []
   },
   getters: {
     getCategory: function getCategory(state) {
       return state.category;
     }
   },
-  actions: {},
-  mutations: {}
+  actions: {
+    getAllCategory: function getAllCategory(context) {
+      axios.get('/show-category').then(function (response) {
+        context.commit('categories', response.data.categories);
+      });
+    }
+  },
+  mutations: {
+    categories: function categories(state, data) {
+      return state.category = data;
+    }
+  }
 });
 
 /***/ }),

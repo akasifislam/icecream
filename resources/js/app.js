@@ -57,7 +57,7 @@ Vue.component(AlertError.name, AlertError)
 
 const router = new VueRouter({
     routes,
-    mode: 'history'
+    mode: 'hash'
 })
 
 const app = new Vue({

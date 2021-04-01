@@ -17,4 +17,12 @@ class CategoryController extends Controller
         $category->save();
         return ['message' => 'okay'];
     }
+
+    public function showCategory()
+    {
+        $categories = Category::all();
+        return response()->json([
+            'categories' => $categories,
+        ], 200);
+    }
 }
