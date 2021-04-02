@@ -10,7 +10,7 @@ class CategoryController extends Controller
     public function addCategory(Request $request)
     {
         $this->validate($request, [
-            'cat_name' => 'required|string'
+            'cat_name' => 'required|string|unique:categories'
         ]);
         $category = new Category();
         $category->cat_name = $request->cat_name;
@@ -24,5 +24,11 @@ class CategoryController extends Controller
         return response()->json([
             'categories' => $categories,
         ], 200);
+    }
+
+    public function deleteCategory(Request $request, $id)
+    {
+        $category = Category::find($id);
+        $category->delete();
     }
 }

@@ -21,16 +21,22 @@
               <tr>
                 <th>Sl</th>
                 <th>Category Name</th>
+                <th>Date</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(category,index) in allCategory" :key="index">
-                <td>{{ index+1  }}</td>
+              <tr v-for="(category, index) in allCategory" :key="index">
+                <td>{{ index + 1 }}</td>
                 <td>{{ category.cat_name }}</td>
+                <td>{{ category.created_at | timeformat }}</td>
                 <td>
                   <a href="" class="btn btn-success btn-sm">edit</a>
-                  <a href="" class="btn btn-primary btn-sm">delete</a>
+                  <a
+                    @click.prevent="deleteCategory(category.id)"
+                    class="btn btn-primary btn-sm"
+                    >delete</a
+                  >
                 </td>
               </tr>
             </tbody>
@@ -46,14 +52,23 @@
 export default {
   name: "List",
   mounted() {
-    this.$store.dispatch("getAllCategory")
+    this.$store.dispatch("getAllCategory");
   },
   computed: {
     allCategory() {
-      return this.$store.getters.getCategory
+      return this.$store.getters.getCategory;
     },
   },
-  methods: {},
+  methods: {
+    deleteCategory(id) {
+      axios.get("/delete-category/" + id).then(() => {
+        Toast.fire({
+          icon: "success",
+          title: "Category deleted successfully",
+        });
+      });
+    },
+  },
 };
 </script>
 

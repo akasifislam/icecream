@@ -10,6 +10,8 @@ import storeData from '../js/store/index'
 const store = new Vuex.Store(
   storeData
 )
+// filterjs support 
+import { filter } from './filter'
 
 Vue.use(VueRouter)
 
@@ -24,24 +26,8 @@ import { Form, HasError, AlertError } from 'vform'
 window.Form = Form;
 
 // sweet alert2 
-// ES6 Modules or TypeScript
-import Swal from 'sweetalert2'
-window.Swal = Swal;
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    didOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
-  window.Toast = Toast
+import { sweetToast } from './sweetToast'
 
-// CommonJS
-// const Swal = require('sweetalert2') 
 
 
 
