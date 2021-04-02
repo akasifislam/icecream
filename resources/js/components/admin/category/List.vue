@@ -62,6 +62,7 @@ export default {
   methods: {
     deleteCategory(id) {
       axios.get("/delete-category/" + id).then(() => {
+        this.$store.dispatch("getAllCategory");
         Toast.fire({
           icon: "success",
           title: "Category deleted successfully",

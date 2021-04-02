@@ -2063,7 +2063,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteCategory: function deleteCategory(id) {
+      var _this = this;
+
       axios.get("/delete-category/" + id).then(function () {
+        _this.$store.dispatch("getAllCategory");
+
         Toast.fire({
           icon: "success",
           title: "Category deleted successfully"
