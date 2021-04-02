@@ -9,7 +9,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" @click.prevent="addCategory()">
+            <form role="form" @submit.prevent="addCategory()">
               <div class="card-body">
                 <div class="form-group">
                   <label for="categoryId">Add New Category</label>

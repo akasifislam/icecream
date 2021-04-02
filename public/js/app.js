@@ -2059,12 +2059,12 @@ __webpack_require__.r(__webpack_exports__);
     editCategory: function editCategory() {
       var _this2 = this;
 
-      this.form.post("/add-category").then(function (response) {
+      this.form.post("/update-category/".concat(this.$route.params.categoryid)).then(function (response) {
         _this2.$router.push("/category-list");
 
         Toast.fire({
           icon: "success",
-          title: "Category add successfully"
+          title: "Category Edited"
         });
       });
     }
@@ -64265,7 +64265,7 @@ var render = function() {
               {
                 attrs: { role: "form" },
                 on: {
-                  click: function($event) {
+                  submit: function($event) {
                     $event.preventDefault()
                     return _vm.editCategory()
                   }
@@ -64508,7 +64508,7 @@ var render = function() {
               {
                 attrs: { role: "form" },
                 on: {
-                  click: function($event) {
+                  submit: function($event) {
                     $event.preventDefault()
                     return _vm.addCategory()
                   }
