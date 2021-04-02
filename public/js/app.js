@@ -2010,8 +2010,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Edit"
+  name: "Edit",
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/edit-category/".concat(this.$route.params.categoryid)).then(function (response) {
+      _this.form.fill(response.data.category);
+    });
+  },
+  data: function data() {
+    return {
+      form: new Form({
+        cat_name: ""
+      })
+    };
+  },
+  methods: {
+    editCategory: function editCategory() {
+      var _this2 = this;
+
+      this.form.post("/add-category").then(function (response) {
+        _this2.$router.push("/category-list");
+
+        Toast.fire({
+          icon: "success",
+          title: "Category add successfully"
+        });
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -64197,13 +64254,102 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v(
-      "\n  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, accusantium\n  esse hic nemo dolor id odit aperiam! Omnis adipisci voluptas modi eveniet\n  minus earum, at incidunt recusandae porro quae dolorum.\n  "
-    ),
-    _c("h1", [_vm._v(_vm._s(this.$route.params.categoryid))])
+    _c("section", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-around mt-2" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card card-primary" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                attrs: { role: "form" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.editCategory()
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("label", { attrs: { for: "categoryId" } }, [
+                        _vm._v("Edit Category")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.cat_name,
+                            expression: "form.cat_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form.errors.has("cat_name")
+                        },
+                        attrs: {
+                          type: "name",
+                          name: "cat_name",
+                          id: "categoryId",
+                          placeholder: "Enter Category Name"
+                        },
+                        domProps: { value: _vm.form.cat_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "cat_name", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "cat_name" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Edit Category")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("save")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

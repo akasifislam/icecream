@@ -32,3 +32,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/add-category', 'CategoryController@addCategory');
 Route::get('/show-category', 'CategoryController@showCategory');
 Route::get('/delete-category/{id}', 'CategoryController@deleteCategory');
+Route::get('/edit-category/{id}', 'CategoryController@editCategory');
