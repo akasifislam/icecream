@@ -64756,13 +64756,19 @@ var render = function() {
                   return _c("tr", { key: index }, [
                     _c("td", [_vm._v(" " + _vm._s(index + 1) + " ")]),
                     _vm._v(" "),
-                    _c("td", [_c("code", [_vm._v(_vm._s(post.name))])]),
+                    _c("td", [_c("code", [_vm._v(_vm._s(post.user.name))])]),
                     _vm._v(" "),
-                    _c("td", [_vm._v("Category name")]),
+                    _c("td", [_vm._v(_vm._s(post.category.cat_name))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(post.title))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(post.photo))]),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          _vm._f("shortlength")(post.description, 20, "....")
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [
                       _c("img", { attrs: { src: post.photo, alt: "" } })
@@ -82124,6 +82130,9 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter('timeformat', function (arg) {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(arg).format("Do-MM-YY");
+});
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.filter('shortlength', function (text, length, suffix) {
+  return text.substring(0, length) + suffix;
 });
 
 /***/ }),

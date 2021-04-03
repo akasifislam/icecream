@@ -31,10 +31,10 @@
             <tbody>
               <tr v-for="(post,index) in allPost" :key="index">
                 <td> {{ index+1 }} </td>
-                <td><code>{{ post.name }}</code></td>
-                <td>Category name</td>
+                <td><code>{{ post.user.name }}</code></td>
+                <td>{{ post.category.cat_name }}</td>
                 <td>{{ post.title }}</td>
-                <td>{{ post.photo }}</td>
+                <td>{{ post.description | shortlength(20,"....") }}</td>
                 <td> <img :src="post.photo" alt=""> </td>
                 <td>
                   <!-- <router-link :to="`/category-edit/${category.id}`" class="btn btn-success btn-sm">edit</router-link>
