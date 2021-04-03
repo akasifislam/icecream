@@ -42,7 +42,7 @@
                     @click.prevent="deleteCategory(category.id)"
                     class="btn btn-primary btn-sm"
                     >delete</a
-                  > -->
+                  > --> 
                   <a href="">edit</a>
                   <a href="">delete</a>
                 </td>
