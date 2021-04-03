@@ -29,13 +29,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td><code>User name</code></td>
+              <tr v-for="(post,index) in allPost" :key="index">
+                <td> {{ index+1 }} </td>
+                <td><code>{{ post.name }}</code></td>
                 <td>Category name</td>
-                <td>Title</td>
-                <td>Description</td>
-                <td>Photo</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.photo }}</td>
+                <td> <img :src="post.photo" alt=""> </td>
                 <td>
                   <!-- <router-link :to="`/category-edit/${category.id}`" class="btn btn-success btn-sm">edit</router-link>
                   <a
@@ -57,7 +57,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "List",
+  mounted() {
+    this.$store.dispatch('getaAllPost')
+  },
+  computed: {
+    allPost() {
+      return this.$store.getters.getPost
+    }
+  },
+  methods: {},
+};
 </script>
 
 <style>

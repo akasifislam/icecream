@@ -17,4 +17,12 @@ class PostController extends Controller
     $category = Category::with('posts')->get();
     return $category;
   }
+
+  public function showPost()
+  {
+    $posts = Post::all();
+    return response()->json([
+      'posts' => $posts
+    ], 200);
+  }
 }
