@@ -65147,7 +65147,14 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("img", { attrs: { src: _vm.form.photo, alt: "" } }),
+                      _c("img", {
+                        attrs: {
+                          src: _vm.form.photo,
+                          alt: "",
+                          width: "150px",
+                          height: "90px"
+                        }
+                      }),
                       _vm._v(" "),
                       _c("has-error", {
                         attrs: { form: _vm.form, field: "title" }

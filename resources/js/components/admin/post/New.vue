@@ -65,7 +65,7 @@
                     class="form-control"
                     :class="{ 'is-invalid': form.errors.has('photo') }"
                   />
-                  <img :src="form.photo" alt="" />
+                  <img :src="form.photo" alt="" width="150px" height="90px" />
                   <has-error :form="form" field="title"></has-error>
                 </div>
               </div>
