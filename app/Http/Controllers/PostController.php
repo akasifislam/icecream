@@ -10,17 +10,13 @@ class PostController extends Controller
 {
   public function post_all()
   {
-    // $posts = Post::with('category', 'user')->get();
-
-    // return $posts;
-
     $category = Category::with('posts')->get();
     return $category;
   }
 
   public function showPost()
   {
-    $posts = Post::with('user','category')->get();
+    $posts = Post::with('user', 'category')->get();
     return response()->json([
       'posts' => $posts
     ], 200);
