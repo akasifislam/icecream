@@ -60,10 +60,12 @@
                 <div class="form-group">
                   <label for="postId">Photo</label>
                   <input
+                    @change="changePhoto($event)"
                     type="file"
                     class="form-control"
                     :class="{ 'is-invalid': form.errors.has('photo') }"
                   />
+                  <img :src="form.photo" alt="" />
                   <has-error :form="form" field="title"></has-error>
                 </div>
               </div>
@@ -100,7 +102,17 @@ export default {
       return this.$store.getters.getCategory;
     },
   },
-  methods: {},
+  methods: {
+    changePhoto(event) {
+      let file = event.target.files[0];
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        this.form.photo = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+  },
 };
 </script>
 
