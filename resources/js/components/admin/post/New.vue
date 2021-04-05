@@ -9,7 +9,11 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form role="form" enctype="multipart/form-data">
+            <form
+              role="form"
+              enctype="multipart/form-data"
+              @submit.prevent="addNewPost()"
+            >
               <div class="card-body">
                 <div class="form-group">
                   <label for="postId">Title</label>
@@ -38,6 +42,7 @@
                   <ckeditor
                     :editor="editor"
                     v-model="form.description"
+                    :class="{ 'is-invalid': form.errors.has('description') }"
                     id="postId3"
                     name="description"
                     :config="editorConfig"
@@ -72,7 +77,13 @@
                     class="form-control"
                     :class="{ 'is-invalid': form.errors.has('photo') }"
                   />
-                  <img :src="form.photo" alt="" width="150px" height="90px" />
+                  <img
+                    :src="form.photo"
+                    v-if="form.photo"
+                    alt="a"
+                    width="150px"
+                    height="90px"
+                  />
                   <has-error :form="form" field="title"></has-error>
                 </div>
               </div>
@@ -117,12 +128,32 @@ export default {
   methods: {
     changePhoto(event) {
       let file = event.target.files[0];
-      let reader = new FileReader();
-      reader.onload = (event) => {
-        this.form.photo = event.target.result;
-      };
-
-      reader.readAsDataURL(file);
+      if (file.size >= 1048576) {
+        Swal.fire({
+          text: "Image size larze!",
+        });
+      } else {
+        let reader = new FileReader();
+        reader.onload = (event) => {
+          this.form.photo = event.target.result;
+          console.log(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    },
+    addNewPost() {
+      this.form
+        .post("save-post")
+        .then((response) => {
+          this.$router.push("/post-list");
+          Toast.fire({
+            icon: "success",
+            title: "Post add successfully",
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
 };

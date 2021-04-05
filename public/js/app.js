@@ -2448,6 +2448,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "New",
@@ -2477,13 +2488,35 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var file = event.target.files[0];
-      var reader = new FileReader();
 
-      reader.onload = function (event) {
-        _this.form.photo = event.target.result;
-      };
+      if (file.size >= 1048576) {
+        Swal.fire({
+          text: "Image size larze!"
+        });
+      } else {
+        var reader = new FileReader();
 
-      reader.readAsDataURL(file);
+        reader.onload = function (event) {
+          _this.form.photo = event.target.result;
+          console.log(event.target.result);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    },
+    addNewPost: function addNewPost() {
+      var _this2 = this;
+
+      this.form.post("save-post").then(function (response) {
+        _this2.$router.push("/post-list");
+
+        Toast.fire({
+          icon: "success",
+          title: "Post add successfully"
+        });
+      })["catch"](function (e) {
+        console.log(e);
+      });
     }
   }
 });
@@ -65005,7 +65038,15 @@ var render = function() {
             _vm._v(" "),
             _c(
               "form",
-              { attrs: { role: "form", enctype: "multipart/form-data" } },
+              {
+                attrs: { role: "form", enctype: "multipart/form-data" },
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addNewPost()
+                  }
+                }
+              },
               [
                 _c("div", { staticClass: "card-body" }, [
                   _c(
@@ -65060,6 +65101,9 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("ckeditor", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has("description")
+                        },
                         attrs: {
                           editor: _vm.editor,
                           id: "postId3",
@@ -65174,14 +65218,16 @@ var render = function() {
                         }
                       }),
                       _vm._v(" "),
-                      _c("img", {
-                        attrs: {
-                          src: _vm.form.photo,
-                          alt: "",
-                          width: "150px",
-                          height: "90px"
-                        }
-                      }),
+                      _vm.form.photo
+                        ? _c("img", {
+                            attrs: {
+                              src: _vm.form.photo,
+                              alt: "a",
+                              width: "150px",
+                              height: "90px"
+                            }
+                          })
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("has-error", {
                         attrs: { form: _vm.form, field: "title" }

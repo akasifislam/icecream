@@ -38,4 +38,5 @@ Route::get('/edit-category/{id}', 'CategoryController@editCategory');
 Route::post('/update-category/{id}', 'CategoryController@updateCategory');
 
 // ================ post route ====================== 
-Route::get('/show-post','PostController@showPost');
+Route::get('/show-post', 'PostController@showPost');
+Route::post('/save-post', 'PostController@savePost');
