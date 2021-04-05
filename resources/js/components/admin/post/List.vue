@@ -29,22 +29,36 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(post,index) in allPost" :key="index">
-                <td> {{ index+1 }} </td>
-                <td><code>{{ post.user.name }}</code></td>
+              <tr v-for="(post, index) in allPost" :key="index">
+                <td>{{ index + 1 }}</td>
+                <td>
+                  <code>{{ post.user.name }}</code>
+                </td>
                 <td>{{ post.category.cat_name }}</td>
                 <td>{{ post.title }}</td>
-                <td>{{ post.description | shortlength(20,"....") }}</td>
-                <td> <img :src="post.photo" alt=""> </td>
+                <td>{{ post.description | shortlength(20, "....") }}</td>
+                <td>
+                  <img
+                    :src="uploadImage(post.photo)"
+                    width="80"
+                    height="70"
+                    alt=""
+                  />
+                </td>
                 <td>
                   <!-- <router-link :to="`/category-edit/${category.id}`" class="btn btn-success btn-sm">edit</router-link>
                   <a
                     @click.prevent="deleteCategory(category.id)"
                     class="btn btn-primary btn-sm"
                     >delete</a
-                  > --> 
+                  > -->
                   <a href="">edit</a>
-                  <a href="">delete</a>
+                  <a
+                    href=""
+                    @click.prevent="deletePost(post.id)"
+                    class="btn btn-primary btn-sm"
+                    >delete</a
+                  >
                 </td>
               </tr>
             </tbody>
@@ -60,14 +74,33 @@
 export default {
   name: "List",
   mounted() {
-    this.$store.dispatch('getaAllPost')
+    this.$store.dispatch("getaAllPost");
   },
   computed: {
     allPost() {
-      return this.$store.getters.getPost
-    }
+      return this.$store.getters.getPost;
+    },
   },
-  methods: {},
+  methods: {
+    uploadImage(img) {
+      return "uploadimage/" + img;
+    },
+    deletePost(id) {
+      axios
+        .get("/delete-post/" + id)
+        .then((response) => {
+          this.$store.dispatch("getaAllPost");
+          this.$router.push("/post-list");
+          Toast.fire({
+            icon: "success",
+            title: "Post Deleted",
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
 };
 </script>
 

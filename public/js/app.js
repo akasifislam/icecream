@@ -2333,17 +2333,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   mounted: function mounted() {
-    this.$store.dispatch('getaAllPost');
+    this.$store.dispatch("getaAllPost");
   },
   computed: {
     allPost: function allPost() {
       return this.$store.getters.getPost;
     }
   },
-  methods: {}
+  methods: {
+    uploadImage: function uploadImage(img) {
+      return "uploadimage/" + img;
+    },
+    deletePost: function deletePost(id) {
+      var _this = this;
+
+      axios.get("/delete-post/" + id).then(function (response) {
+        _this.$store.dispatch("getaAllPost");
+
+        _this.$router.push("/post-list");
+
+        Toast.fire({
+          icon: "success",
+          title: "Post Deleted"
+        });
+      })["catch"](function (e) {
+        console.log(e);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -64942,7 +64976,7 @@ var render = function() {
                 "tbody",
                 _vm._l(_vm.allPost, function(post, index) {
                   return _c("tr", { key: index }, [
-                    _c("td", [_vm._v(" " + _vm._s(index + 1) + " ")]),
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
                     _vm._v(" "),
                     _c("td", [_c("code", [_vm._v(_vm._s(post.user.name))])]),
                     _vm._v(" "),
@@ -64959,10 +64993,34 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _c("img", { attrs: { src: post.photo, alt: "" } })
+                      _c("img", {
+                        attrs: {
+                          src: _vm.uploadImage(post.photo),
+                          width: "80",
+                          height: "70",
+                          alt: ""
+                        }
+                      })
                     ]),
                     _vm._v(" "),
-                    _vm._m(1, true)
+                    _c("td", [
+                      _c("a", { attrs: { href: "" } }, [_vm._v("edit")]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.deletePost(post.id)
+                            }
+                          }
+                        },
+                        [_vm._v("delete")]
+                      )
+                    ])
                   ])
                 }),
                 0
@@ -64995,16 +65053,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("action")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "" } }, [_vm._v("edit")]),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "" } }, [_vm._v("delete")])
     ])
   }
 ]
