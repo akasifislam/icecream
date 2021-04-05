@@ -15,6 +15,11 @@ import { filter } from './filter'
 
 Vue.use(VueRouter)
 
+// ckeditor5 
+import CKEditor from '@ckeditor/ckeditor5-vue2';
+
+Vue.use( CKEditor );
+
 import { routes } from './routes';
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);

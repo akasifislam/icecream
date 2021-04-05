@@ -26,7 +26,7 @@
                 </div>
                 <div class="form-group">
                   <label for="postId3">Description</label>
-                  <textarea
+                  <!-- <textarea
                     type="name"
                     class="form-control"
                     :class="{ 'is-invalid': form.errors.has('description') }"
@@ -34,7 +34,14 @@
                     name="description"
                     id="postId3"
                     placeholder="Enter Category Name"
-                  ></textarea>
+                  ></textarea> -->
+                  <ckeditor
+                    :editor="editor"
+                    v-model="form.description"
+                    id="postId3"
+                    name="description"
+                    :config="editorConfig"
+                  ></ckeditor>
                   <has-error :form="form" field="description"></has-error>
                 </div>
                 <div class="form-group">
@@ -81,6 +88,7 @@
 </template>
 
 <script>
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 export default {
   name: "New",
   data() {
@@ -91,6 +99,10 @@ export default {
         cat_id: "",
         photo: "",
       }),
+      editor: ClassicEditor,
+      editorConfig: {
+        // The configuration of the editor.
+      },
     };
   },
   mounted() {
