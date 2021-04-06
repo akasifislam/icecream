@@ -79,7 +79,7 @@
                     :class="{ 'is-invalid': form.errors.has('photo') }"
                   />
                   <img
-                    :src="form.photo"
+                    :src="updateImage()"
                     v-if="form.photo"
                     alt="a"
                     width="150px"
@@ -160,6 +160,14 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    updateImage() {
+      let image = this.form.photo;
+      if (image.length > 100) {
+        return this.form.photo;
+      } else {
+        return `uploadimage/${this.form.photo}`;
+      }
     },
   },
 };

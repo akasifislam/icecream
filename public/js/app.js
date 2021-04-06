@@ -2444,6 +2444,15 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (e) {
         console.log(e);
       });
+    },
+    updateImage: function updateImage() {
+      var image = this.form.photo;
+
+      if (image.length > 100) {
+        return this.form.photo;
+      } else {
+        return "uploadimage/".concat(this.form.photo);
+      }
     }
   }
 });
@@ -65319,7 +65328,7 @@ var render = function() {
                       _vm.form.photo
                         ? _c("img", {
                             attrs: {
-                              src: _vm.form.photo,
+                              src: _vm.updateImage(),
                               alt: "a",
                               width: "150px",
                               height: "90px"
