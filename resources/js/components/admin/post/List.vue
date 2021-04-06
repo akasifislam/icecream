@@ -52,7 +52,7 @@
                     class="btn btn-primary btn-sm"
                     >delete</a
                   > -->
-                  <a href="">edit</a>
+                  <router-link :to="`/post-edit/${post.id}`">edit</router-link>
                   <a
                     href=""
                     @click.prevent="deletePost(post.id)"

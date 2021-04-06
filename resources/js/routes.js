@@ -38,11 +38,10 @@ export const routes = [
         path: '/post-edit/:postid',
         component: PostEdit
     },
-
-
-
-
-
+    {
+        path: '/post-edit/:postid',
+        component: PostEdit
+    },
 
 
 
