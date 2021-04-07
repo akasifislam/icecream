@@ -149,12 +149,12 @@ export default {
     },
     updatePost() {
       this.form
-        .post("save-post")
+        .post(`/update-post/${this.$route.params.postid}`)
         .then((response) => {
           this.$router.push("/post-list");
           Toast.fire({
             icon: "success",
-            title: "Post add successfully",
+            title: "Post updated",
           });
         })
         .catch((e) => {

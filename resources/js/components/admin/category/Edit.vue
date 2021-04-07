@@ -55,13 +55,15 @@ export default {
   },
   methods: {
     editCategory() {
-      this.form.post(`/update-category/${this.$route.params.categoryid}`).then((response) => {
-        this.$router.push("/category-list");
-        Toast.fire({
-          icon: "success",
-          title: "Category Edited",
+      this.form
+        .post(`/update-category/${this.$route.params.categoryid}`)
+        .then((response) => {
+          this.$router.push("/category-list");
+          Toast.fire({
+            icon: "success",
+            title: "Category Edited",
+          });
         });
-      });
     },
   },
 };

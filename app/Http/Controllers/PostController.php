@@ -58,4 +58,30 @@ class PostController extends Controller
       'post' => $post
     ], 200);
   }
+  public function updatePost(Request $request, $id)
+  {
+    $post = Post::find($id);
+
+    if ($request->photo != $post->photo) {
+      $strpos = strpos($request->photo, ';');
+      $sub = substr($request->photo, 0, $strpos);
+      $explode = explode('/', $sub)[1];
+      $name = time() . "." . $explode;
+      $img = Image::make($request->photo)->resize(300, 200);
+      $upload_path = public_path() . "/uploadimage/";
+      $image = $upload_path . $post->photo;
+      $img->save($upload_path . $name);
+      if (file_exists($image)) {
+        @unlink($image);
+      }
+    } else {
+      $name = $post->photo;
+    }
+    $post->title = $request->title;
+    $post->description = $request->description;
+    $post->cat_id = $request->cat_id;
+    $post->user_id = Auth::user()->id;
+    $post->photo = $name;
+    $post->save();
+  }
 }
