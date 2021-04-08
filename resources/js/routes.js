@@ -6,6 +6,11 @@ import PostList from './components/admin/post/List.vue'
 import PostAdd from './components/admin/post/New.vue'
 import PostEdit from './components/admin/post/Edit.vue'
 
+
+// =========== frontend =========== 
+import PublicHome from './components/public/PublicHome.vue'
+import BlogPost from './components/public/blog/BlogPost.vue'
+
 export const routes = [
   {
       path: '/home',
@@ -43,7 +48,15 @@ export const routes = [
         component: PostEdit
     },
 
-
+    // =================== frontend route ====================== 
+    {
+        path: '/',
+        component: PublicHome
+    },
+    {
+        path: '/blog-post',
+        component: BlogPost
+    }
 
 
 
