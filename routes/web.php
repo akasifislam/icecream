@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public.index');
 });
 
 Auth::routes();
@@ -18,9 +18,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('/{anypayh}', 'HomeController@index')->where('path', '.*');
 
-// ============= category route ================== 
 Route::group(['middleware' => ['auth']], function () {
-    //
+    // ============= category route ================== 
     Route::post('/add-category', 'CategoryController@addCategory');
     Route::get('/show-category', 'CategoryController@showCategory');
     Route::get('/delete-category/{id}', 'CategoryController@deleteCategory');
